@@ -7,6 +7,19 @@
 </head>
 <body>
     <h1>history</h1>
+    <form method="POST">
+        <label for="email" class="h1">学籍番号</label><br>
+        <input type="text" id="stu_num" name="stu_num" required><br>
+        <input type="submit" value="履歴を見る">
+    </form>
+
+    {% for record in records %}
+    <div>
+        <h2>{{ record.day }}</h2>
+        <h2>{{ record.time }}</h2>
+        <h2>{{ record.seat }}</h2>
+    </div>
+    {% endfor %}
     
 </body>
 </html>

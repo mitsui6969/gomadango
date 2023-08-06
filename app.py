@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
+import pytz
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
@@ -14,16 +15,18 @@ login_manager.login_view = 'login'
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     stu_num = db.Column(db.Integer)
+    #stu_num = relationship("List", backref="user" )
     email = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(30))
 
 class List(UserMixin, db.Model):
     __tablename__ = "lists"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#   studentnumber = db.Column(db.Text())
+    stu_num = db.Column(db.Integer)
     day = db.Column(db.Text())
     time = db.Column(db.Text())
     seat = db.Column(db.Text())
+    timestamp = db.Column(db.DateTime, default=datetime.now(pytz.timezone('Asia/Tokyo')))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -67,16 +70,31 @@ def index():
     return render_template('index.html', lists = lists)
 
 @app.route('/new', methods=['GET', 'POST'])
+@login_required
 def new():
     if request.method == 'POST':
         list = List()
     #   list.studentnumber = request.form["studentnumber"]
+        list.stu_num = request.form["stu_num"]
         list.day = request.form["day"]
         list.time = request.form["time"]
         list.seat = request.form["seat"]
+        list.timestamp = datetime.now(pytz.timezone('Asia/Tokyo'))
         db.session.add(list)
         db.session.commit()
+        return redirect(url_for('index'))
     return render_template('new.html')
+
+
+###履歴画面###
+@app.route('/post/history', methods=["GET", "POST"])
+@login_required 
+def history_post():
+    if request.method == "POST":
+        stu_num = request.form["stu_num"] #学籍番号入力
+        matching_records = List.query.filter_by(stu_num=stu_num).all()
+        return render_template('history.html', records=matching_records)
+    return render_template('history.html')
 
 
 if __name__ == "__main__":
