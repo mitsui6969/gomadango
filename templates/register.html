@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../static/register.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-
-    <h2>Register</h2>
-    <form method="POST">
-        <input type="text" id="stu_num" name="stu_num" required><br>
-        <input type="text" id="email" name="email" required><br>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Register">
-    </form>
-    
+    <header>
+        <div class="header-inner">
+            <h1>新規作成</h1> 
+          </div>
+    </header>
+    <main>
+        <form method="POST">
+            <div class="infomation">
+                <h1>学籍番号</h1>
+                <input type="text" id="stu_num" name="stu_num" required><br>
+                <h1>メールアドレス</h1>
+                <input type="text" id="email" name="email" required><br>
+                <h1>パスワード</h1>
+                <input type="password" id="password" name="password" required><br>
+                <input type="submit" value="登録" id="register">
+            </div>
+        </form>
+    </main>
 </body>
 </html>
