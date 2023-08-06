@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
+import pytz
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
@@ -17,13 +18,10 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(30))
 
-class List(UserMixin, db.Model):
-    __tablename__ = "lists"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#   studentnumber = db.Column(db.Text())
-    day = db.Column(db.Text())
-    time = db.Column(db.Text())
-    seat = db.Column(db.Text())
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.now(pytz.timezone('Asia/Tokyo')))
+    user_reserve = db.relationship('User', backref='user')
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -61,23 +59,21 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+# ###予約履歴###
+@app.route('/post/history', methods=['GET', 'POST'])
+@login_required #予約履歴だから予約のコード見て変える
+def history_post():
+    if request.method == 'POST':
+        #　↓　予約のみて変える
+        post = Post(timestamp=datetime.now(pytz.timezone('Asia/Tokyo')))
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('history.html')
+
 @app.route('/')
 def index():
-    lists = List.query.all()
-    return render_template('index.html', lists = lists)
-
-@app.route('/new', methods=['GET', 'POST'])
-def new():
-    if request.method == 'POST':
-        list = List()
-    #   list.studentnumber = request.form["studentnumber"]
-        list.day = request.form["day"]
-        list.time = request.form["time"]
-        list.seat = request.form["seat"]
-        db.session.add(list)
-        db.session.commit()
-    return render_template('new.html')
-
+    return render_template('index.html')
 
 if __name__ == "__main__":
     with app.app_context():
