@@ -17,6 +17,14 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(30))
 
+class List(UserMixin, db.Model):
+    __tablename__ = "lists"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#   studentnumber = db.Column(db.Text())
+    day = db.Column(db.Text())
+    time = db.Column(db.Text())
+    seat = db.Column(db.Text())
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -55,7 +63,21 @@ def logout():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    lists = List.query.all()
+    return render_template('index.html', lists = lists)
+
+@app.route('/new', methods=['GET', 'POST'])
+def new():
+    if request.method == 'POST':
+        list = List()
+    #   list.studentnumber = request.form["studentnumber"]
+        list.day = request.form["day"]
+        list.time = request.form["time"]
+        list.seat = request.form["seat"]
+        db.session.add(list)
+        db.session.commit()
+    return render_template('new.html')
+
 
 if __name__ == "__main__":
     with app.app_context():
