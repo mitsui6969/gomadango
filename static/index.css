@@ -44,11 +44,14 @@ a {
 }
 
 .header-inner h1 {
-  font-size: 25px;
+  margin-left: 45px;
+  font-size: 19px;
+  font-weight: normal;
+  color: #2b2b2b;
 }
 
 .header-inner button {
-  background-color: #BFB3A8;
+  background-color: #E6DFD9;
   border: none;
   font-size: 18px;
   border-radius:8px;
@@ -63,7 +66,7 @@ a {
 
 .mainmain {
   height: calc(100vh - 60px);
-  background-image: url(../static/images/DSC_3041.jpg);
+  background-image: url(/static/images/DSC_3041.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -75,17 +78,21 @@ a {
 .yoyaku {
   position: absolute;
   font-size: 20px;
-  padding: 10px 30px 10px 30px;
+  padding: 13px 40px;
+  line-height: 1.428571429;
   top: 300px;
-  left: 580px;
-  border-radius:8px;
+  left: 480px;
+  border-radius:4px;
   border: none;
   color: black;
+  z-index: 3;
 }
 
 .a1 {
   position: absolute;
+  letter-spacing: 1px;
   font-size: 30px;
+  font-weight: normal;
   color: black;
   top: 250px;
   left: 560px;
@@ -111,3 +118,131 @@ a {
   margin: 10px;
 }
 
+
+
+
+
+
+
+
+
+
+
+.modal_wrap input {
+  display: none;
+}
+
+.modal_overlay {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.5s, transform 0s 0.5s;
+  transform: scale(0);
+}
+
+.modal_trigger {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.modal_content {
+  margin-bottom: 300px;
+    align-self: center;
+    width: 60%;
+    padding: 30px 30px 15px;
+    box-sizing: border-box;
+    background: #fff;
+    line-height: 1.4em;
+    transition: 0.5s;
+    z-index: 5;
+}
+
+.modal_content p {
+  padding-top: 0;
+}
+
+.close_button {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal_wrap input:checked ~ .modal_overlay {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s;
+}
+
+.modal_wrap input:checked ~ .modal_overlay .modal_content {
+  transform: translateY(20px);
+}
+
+.open_button {
+  margin-right: 159px;
+    text-align: center;
+    font-size: 30px;
+    cursor :pointer;
+    transition: all 0.3s;
+    display: block;
+    max-width:300px;
+    text-decoration: none;
+}
+
+.open-button:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);/*下に動く*/
+
+}
+
+/*アイコンを表示*/
+.open-button:after {
+font-family: "Font Awesome 5 Free";
+  content: "\f2d0";
+    padding-left: 8px;
+}
+
+/*ラベルホバー時*/
+.open-button:hover {
+  color: #FFFFFF;
+  background-color: #4f96f6;
+  transition: .6s;
+}
+
+.modal_title2 {
+  font-size: 1.5em;
+	position: relative;
+	overflow: hidden;
+  padding-bottom: 10px;
+  margin-top:0;
+  margin-bottom: 15px;
+}
+
+.modal_title2::before,
+.modal_title2::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+}
+
+/* h2 プライマリカラー*/
+.modal_title2:before{
+	border-bottom: 4px solid #6bb6ff;
+	width: 100%;
+}
+/* h2 セカンダリカラー*/
+.modal_title2:after{
+	border-bottom: 4px solid #c8e4ff;
+	width: 100%;
+}

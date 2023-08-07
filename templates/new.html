@@ -1,19 +1,53 @@
+<!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="utf-8">
-<title>自習室予約</title>
+	<link rel="stylesheet" href="/static/new.css">
+	<meta charset="utf-8">
+	<title>自習室予約</title>
 </head>
+
 <body>
+	<header>
+    <div class="header-inner">
+      <h1>予約</h1> 
+    </div>
+  </header>
 	<form method="POST" action="/new">
-	<p>学籍番号：<br>
-	<input type="text" id="stu_num" name="stu_num"></p>
-	<p>日付：<br>
-	<input type="text" id="day" name="day"></p>
-	<p>時間：<br>
-	<p><input type="text" id="time" name="time"></p>
-	<p>席：<br>
-	<input type="text" id="seat" name="seat"><br>
-    <input type="submit" value="送信"></p>
+		<div class="abslute">
+			<input type="date" id="day" name="day">
+		  <input type="text" name="stu_num" class="student" placeholder="学籍番号を入力してください">
+		</div>
+		<div class="right">
+			<div class="time">
+				<div class="botan1">
+					<p><input type="radio" class="radio u1" name="time" value="8:00~9:00"/><label for="Radio1">08:00~09:00</label></p>
+					<p><input type="radio" class="radio u2" name="time" value="9:00~10:00"/><label for="Radio1">09:00~10:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="10:00~11:00"/><label for="Radio1">10:00~11:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="11:00~12:00"/><label for="Radio1">11:00~12:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="12:00~13:00"/><label for="Radio1">12:00~13:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="13:00~14:00"/><label for="Radio1">13:00~14:00</label></p>
+				</div>
+				<div class="botan2">
+					<p><input type="radio" class="radio" name="time" value="14:00~15:00"/><label for="Radio1">14:00~15:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="15:00~16:00"/><label for="Radio1">15:00~16:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="16:00~17:00"/><label for="Radio1">16:00~17:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="17:00~18:00"/><label for="Radio1">17:00~18:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="18:00~19:00"/><label for="Radio1">18:00~19:00</label></p>
+					<p><input type="radio" class="radio" name="time" value="19:00~20:00"/><label for="Radio1">19:00~20:00</label></p>
+				</div>
+			</div>
+			<div class="waku">
+				<input type="text" id="seat" name="seat" placeholder="座席番号を入力してください"><br>
+        <input type="submit" value="送信" class="submit">
+			</div>
+		</div>
 	</form>
+	<div class="img">
+		<img src="/static/images/１.png">
+	</div>
+	
+
 </body>
+
 </html>
