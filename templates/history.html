@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="/static/history.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>history</h1>
+    <header>
+        <div class="header-inner">
+          <a href="/"><h1>StudySpot</h1></a> 
+        </div>
+      </header>
     <form method="POST">
-        <label for="email" class="h1">学籍番号</label><br>
-        <input type="text" id="stu_num" name="stu_num" required><br>
-        <input type="submit" value="履歴を見る">
+        <div class="main">
+            <h1>履歴</h1>
+            <label for="email" class="h12">学籍番号を入力</label><br>
+            <input type="text" id="stu_num" name="stu_num" required><br>
+            <div class="line"></div>
+            <input type="submit" value="履歴を見る" class="botton">
+        </div>
     </form>
 
     {% for record in records %}
-    <div>
-        <h2>{{ record.day }}</h2>
-        <h2>{{ record.time }}</h2>
-        <h2>{{ record.seat }}</h2>
+    <div class="detali">
+        <h2 class="h1">{{ record.day }}</h2>
+        <h2 class="h2">{{ record.time }}</h2>
+        <h2 class="h3">{{ record.seat }}番席</h2>
     </div>
     {% endfor %}
-    
+
 </body>
+
 </html>

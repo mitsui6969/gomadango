@@ -6,13 +6,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>予約システム</title>
-  <link rel="stylesheet" href="../static/index.css">
+  <link rel="stylesheet" href="/static/index.css">
 </head>
 
 <body>
   <header>
     <div class="header-inner">
-      <h1>自習室予約</h1>
+      <h1>StudySpot</h1>
       <a href="/register"><button class="a">新規作成</button></a>
       <a href="/login"><button>ログイン</button></a>
     </div>
@@ -22,15 +22,28 @@
       <div class="menu">
         <nav>
           <li>キャンセル</li>
-          <li>お知らせ</li>
-          <li>履歴</li>
+          <div class="modal_wrap">
+            <input id="trigger" type="checkbox">
+            <div class="modal_overlay">
+              <label for="trigger" class="modal_trigger"></label>
+              <div class="modal_content">
+                <label for="trigger" class="close_button">✖️</label>
+                <p class="modal_title2">お知らせ</p>
+                <p>7/31 　お盆(8/8~8/15)は休みのお知らせ</p>
+              </div>
+            </div>
+          </div>
+          <center>
+            <label for="trigger" class="open_button">お知らせ</label>
+          </center>
+          <a href="/post/history"><li>履歴</li></a>
           <li>設定</li>
           <li>フィードバック</li>
         </nav>
       </div>
     </div>
-    <button class="yoyaku">予約</button>
-    <h1 class="a1">自習しよう</h1>
+    <a href="/new"><button class="yoyaku">予約</button></a>
+    <h1 class="a1"></h1>
   </main>
   <footer>
   </footer>

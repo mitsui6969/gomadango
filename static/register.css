@@ -54,3 +54,8 @@ time, mark, audio, video {
   font-size: 20px;
   padding: 4px 30px 4px 30px;
 }
+
+.notification {
+  margin-top: 50px;
+  text-align: center;
+}
