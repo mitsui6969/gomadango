@@ -10,6 +10,13 @@
     <div class="header-inner">
         <h1>ログイン</h1> 
     </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
     <form method="POST">
         <div class="infomation">
             <label for="email" class="h1">メールアドレス</label><br>
